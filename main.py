@@ -16,22 +16,11 @@ def solveSudoku(board):
 def solveSudokuHelper(x,y,board):
 
     # this happens when the board is solved
-    if x == 8 and y == 8:
-        if board[y][x]!=0:
-            for row in board:
-                for ele in row:
-                    print(ele, end=" ")
-                print()
-        else:
-            for i in range(1,10):
-                if isValid(x,y,i,board) is True:
-                    board[y][x]=x
-                    for row in board:
-                        for ele in row:
-                            print(ele, end=" ")
-                        print()
-                    board[y][x]=0
-        print()
+    if y > 8:
+        for row in board:
+            for ele in row:
+                print(ele, end=" ")
+            print()
         return
 
 

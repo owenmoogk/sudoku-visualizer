@@ -21,7 +21,8 @@ def solveSudokuHelper(x,y,board):
             for ele in row:
                 print(ele, end=" ")
             print()
-        return
+        quit()
+        # return
 
 
     # this happens when the board is at the final row, and needs to go down a row

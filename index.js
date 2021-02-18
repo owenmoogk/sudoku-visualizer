@@ -1,7 +1,6 @@
 
 // GLOBALS
 grid = []
-solved = false
 
 // on page load
 function loadBoard(){
@@ -89,6 +88,16 @@ function clearBoard(){
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
     displayBoard(grid)
+    resetColors()
+}
+
+function resetColors(){
+    for (i = 0; i < 9; i++){
+        for (p = 0; p < 9; p++){
+            element = document.getElementById(String(i)+String(p))
+            element.style.backgroundColor = "white"
+        }
+    }
 }
 
 function formatNums(){

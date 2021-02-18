@@ -1,4 +1,8 @@
+animations = []
+solved = false
+
 function solveSudoku(){
+    animations = []
     formatNums()
     solveSudokuHelper(0,0)
 }
@@ -9,7 +13,8 @@ function solveSudokuHelper(x,y){
     }
     // this happens when the grid is solved
     if (y>8){
-        displayBoard(grid)
+        animations.push("finished")
+        doAnimations()
         solved = true
     }
 
@@ -22,8 +27,13 @@ function solveSudokuHelper(x,y){
         for (let i = 1; i < 10; i++){
             if (isValid(x, y, i)){
                 grid[y][x] = i
+                animations.push([x, y, i])
                 solveSudokuHelper(x+1, y)
+                if (solved){
+                    return
+                }
                 grid[y][x] = 0
+                animations.push([x, y, 0])
             }
         }
     }

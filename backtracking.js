@@ -1,35 +1,5 @@
-grid = [
-    [0, 0, 5, 0, 7, 8, 0, 0, 9],
-    [0, 8, 0, 0, 0, 0, 0, 0, 0],
-    [2, 7, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 2, 4, 3],
-    [1, 9, 0, 7, 0, 0, 0, 0, 5],
-    [0, 0, 0, 3, 0, 0, 0, 0, 0],
-    [0, 4, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 8, 0, 5, 0, 0, 7],
-    [3, 0, 0, 0, 0, 0, 9, 0, 0],
-]
-solved = false
-
-function clearBoard(){
-    solved = false
-    grid = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]
-    displayBoard(grid)
-}
-
 function solveSudoku(){
-    console.log("started")
-    console.log(grid, solved)
+    formatNums()
     solveSudokuHelper(0,0)
 }
 
@@ -39,7 +9,6 @@ function solveSudokuHelper(x,y){
     }
     // this happens when the grid is solved
     if (y>8){
-        console.log("init finishing process")
         displayBoard(grid)
         solved = true
     }
@@ -48,6 +17,7 @@ function solveSudokuHelper(x,y){
     else if (x>8){
         solveSudokuHelper(0,y+1)
     }
+
     else if (grid[y][x] == 0){
         for (let i = 1; i < 10; i++){
             if (isValid(x, y, i)){

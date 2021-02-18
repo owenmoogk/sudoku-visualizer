@@ -25,3 +25,12 @@ h1{
     outline: none;
     border: 2px solid red;
 }
+
+.user-input{
+    font-weight: bold;
+}
+
+.computer-input{
+    background-color: lime;
+    color: grey;
+}

@@ -2,6 +2,9 @@ animations = []
 solved = false
 
 function solveSudoku(){
+    removeComputerNumbers()
+    solved = false
+    getBoard()
     animations = []
     formatNums()
     solveSudokuHelper(0,0)

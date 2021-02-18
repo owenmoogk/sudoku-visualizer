@@ -1,8 +1,7 @@
-animationSpeed = 1
+animationSpeed = 0.1
 
 function doAnimations(){
     console.log("animating")
-
     // precalculation
     animationLength = animations.length
     movesLeft = document.getElementById("moves-left")
@@ -17,14 +16,13 @@ function animationHelper(movesLeft, i, animationLength){
         y = animations[0][1]
         num = animations[0][2]
         element = document.getElementById(String(y)+String(x))
-        console.log(animations)
         animations.shift()
         if (num == 0){
-            element.style.backgroundColor = "white"
+            element.classList.remove("computer-input")
             element.value = ""
         }
         else{
-            element.style.backgroundColor = "rgba(0,255,0,0.5)"
+            element.classList.add("computer-input")
             element.value = num
         }
         movesLeft.innerText = animationLength - i

@@ -9,12 +9,29 @@ function loadBoard(){
         txt += "<div class='row'>"
         for (p = 0; p < 9; p++){
             // the id is just the x and y coords slapped together, messy but it works for the application
-            txt += "<input type='text' onchange='getBoard(); formatNums()' class='square' id='"+String(i)+String(p)+"' maxlength='1'>"
+            txt += "<input type='text' onchange='getBoard(); userInputed(this)' class='square' id='"+String(i)+String(p)+"' maxlength='1'>"
         }
         txt += "</div>"
     }
     board = document.getElementById("board")
     board.innerHTML = txt
+}
+
+function removeComputerNumbers(){
+    for (i = 0; i < 9; i++){
+        for (p = 0; p < 9; p++){
+            element = document.getElementById(String(i)+String(p))
+            if (element.classList.contains("computer-input")){
+                element.value = ""
+                element.classList.remove("computer-input")
+            }
+        }
+    }
+}
+
+function userInputed(element){
+    element.classList.add("user-input")
+    element.classList.remove("computer-input");
 }
 
 function displayBoard(board){
@@ -74,6 +91,22 @@ function initBoard(){
     formatNums()
 }
 
+function formatNums(){
+    for (i = 0; i < 9; i++){
+        for (p = 0; p < 9; p++){
+            element = document.getElementById(String(i)+String(p))
+            if (element.value != ""){
+                element.classList.add("user-input")
+                element.classList.remove("computer-input")
+            }
+            else{
+                element.classList.remove("user-input")
+                element.classList.remove("computer-input")
+            }
+        }
+    }
+}
+
 function clearBoard(){
     solved = false
     grid = [
@@ -88,30 +121,5 @@ function clearBoard(){
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
     displayBoard(grid)
-    resetColors()
-}
-
-function resetColors(){
-    for (i = 0; i < 9; i++){
-        for (p = 0; p < 9; p++){
-            element = document.getElementById(String(i)+String(p))
-            element.style.backgroundColor = "white"
-        }
-    }
-}
-
-function formatNums(){
-    for (i = 0; i < 9; i++){
-        for (p = 0; p < 9; p++){
-            element = document.getElementById(String(i)+String(p))
-            if (element.value != ""){
-                element.style.color = "black"
-                element.style.fontWeight = "bold"
-            }
-            else{
-                element.style.color = "grey"
-                element.style.fontWeight = "normal"
-            }
-        }
-    }
+    formatNums()
 }

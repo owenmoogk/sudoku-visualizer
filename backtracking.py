@@ -1,15 +1,3 @@
-grid = [
-    [0, 0, 5, 0, 7, 8, 0, 0, 9],
-    [0, 8, 0, 0, 0, 0, 0, 0, 0],
-    [2, 7, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 2, 4, 3],
-    [1, 9, 0, 7, 0, 0, 0, 0, 5],
-    [0, 0, 0, 3, 0, 0, 0, 0, 0],
-    [0, 4, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 8, 0, 5, 0, 0, 7],
-    [3, 0, 0, 0, 0, 0, 9, 0, 0],
-]
-
 def solveSudoku(board):
     solveSudokuHelper(0,0,board)
 
@@ -23,7 +11,6 @@ def solveSudokuHelper(x,y,board):
             print()
         quit()
         # return
-
 
     # this happens when the board is at the final row, and needs to go down a row
     if x>8:
@@ -69,4 +56,16 @@ def isValid(x, y, num, grid):
     return(True)
 
 if __name__ == "__main__":
+    grid = [
+        [0, 0, 5, 0, 7, 8, 0, 0, 9],
+        [0, 8, 0, 0, 0, 0, 0, 0, 0],
+        [2, 7, 0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 2, 4, 3],
+        [1, 9, 0, 7, 0, 0, 0, 0, 5],
+        [0, 0, 0, 3, 0, 0, 0, 0, 0],
+        [0, 4, 0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 8, 0, 5, 0, 0, 7],
+        [3, 0, 0, 0, 0, 0, 9, 0, 0],
+    ]
+
     print(solveSudoku(grid))

@@ -4,13 +4,13 @@ function doAnimations(){
     console.log("animating")
     // precalculation
     animationLength = animations.length
-    movesLeft = document.getElementById("moves-left")
+    movesLeftElement = document.getElementById("moves-left")
     for(let i = 0; i < animationLength; i++){
-        animationHelper(movesLeft, i, animationLength)
+        animationHelper(movesLeftElement, i, animationLength)
     }
 }
 
-function animationHelper(movesLeft, i, animationLength){
+function animationHelper(movesLeftElement, i, animationLength){
     setTimeout(() => {
         x = animations[0][0]
         y = animations[0][1]
@@ -25,9 +25,9 @@ function animationHelper(movesLeft, i, animationLength){
             element.classList.add("computer-input")
             element.value = num
         }
-        movesLeft.innerText = animationLength - i
+        movesLeftElement.innerText = animationLength - i
         if (animationLength - i <= 2){
-            movesLeft.innerText = ""
+            movesLeftElement.innerText = ""
         }
     }, animationSpeed);
 }

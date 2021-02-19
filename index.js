@@ -9,12 +9,31 @@ function loadBoard(){
         txt += "<div class='row'>"
         for (p = 0; p < 9; p++){
             // the id is just the x and y coords slapped together, messy but it works for the application
-            txt += "<input type='text' onchange='getBoard(); userInputed(this)' class='square' id='"+String(i)+String(p)+"' maxlength='1'>"
+            txt += "<input type='text' oninput='validateInput(this)' class='square' id='"+String(i)+String(p)+"' maxlength='1'>"
         }
         txt += "</div>"
     }
     board = document.getElementById("board")
     board.innerHTML = txt
+}
+
+function validateInput(element){
+    num = element.value
+    if (num == ""){
+        num = 0
+    }
+    // casts value to integer, and then tests if it is valid
+    num = parseInt(num)
+    if (Number.isInteger(num)){
+        // pass
+    }
+    else{
+        element.value = ""
+        notANumber()
+        return("-1")
+    }
+    getBoard()
+    userInputed(element)
 }
 
 function removeComputerNumbers(){
@@ -46,6 +65,20 @@ function displayBoard(board){
     }
 }
 
+function formatAfterSolve(){
+    for (i = 0; i < 9; i++){
+        for (p = 0; p < 9; p++){
+            element = document.getElementById(String(i)+String(p))
+            if (element.classList.contains("user-input")){
+                // pass
+            }
+            else{
+                element.classList.add("computer-input")
+            }
+        }
+    }
+}
+
 function getBoard(){
     grid = []
     // row by row for flexibility ig
@@ -53,19 +86,7 @@ function getBoard(){
         grid.push([])
         for (p = 0; p < 9; p++){
             element = document.getElementById(String(i)+String(p))
-            num = element.value
-            if (num == ""){
-                num = 0
-            }
-            // casts value to integer, and then tests if it is valid
-            num = parseInt(num)
-            if (Number.isInteger(num)){
-                grid[i].push(num)
-            }
-            else{
-                notANumber()
-                return("-1")
-            }
+            grid[i].push(element.value)
         }
     }
 }
@@ -86,11 +107,11 @@ function initBoard(){
         [0, 0, 0, 8, 0, 5, 0, 0, 7],
         [3, 0, 0, 0, 0, 0, 9, 0, 0],
     ]
-    solved = false
     displayBoard(grid)
     formatNums()
 }
 
+// all numbers in grid are now considered user inputted
 function formatNums(){
     for (i = 0; i < 9; i++){
         for (p = 0; p < 9; p++){
@@ -108,7 +129,6 @@ function formatNums(){
 }
 
 function clearBoard(){
-    solved = false
     grid = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],

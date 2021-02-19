@@ -8,6 +8,16 @@ function backtracking(){
     animations = []
     formatNums()
     backtrackingHelper(0,0)
+    doAnimations()
+}
+
+// solve without animations
+function solve(){
+    removeComputerNumbers()
+    solved = false
+    backtrackingHelper(0,0)
+    displayBoard(grid)
+    formatAfterSolve()
 }
 
 function backtrackingHelper(x,y){
@@ -16,8 +26,6 @@ function backtrackingHelper(x,y){
     }
     // this happens when the grid is solved
     if (y>8){
-        animations.push("finished")
-        doAnimations()
         solved = true
     }
 

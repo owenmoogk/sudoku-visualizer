@@ -26,5 +26,8 @@ function animationHelper(movesLeft, i, animationLength){
             element.value = num
         }
         movesLeft.innerText = animationLength - i
+        if (animationLength - i <= 2){
+            movesLeft.innerText = ""
+        }
     }, animationSpeed);
 }

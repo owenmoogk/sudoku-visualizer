@@ -9,15 +9,17 @@
         <script src="animations.js"></script>
     </head>
     <body>
-        <h1>Sodoku Bot</h1>
-        <button onclick="getBoard()">Get Board</button>
-        <button onclick="solveSudoku()">Solve</button>
-        <button onclick="clearBoard()">Clear Board</button>
-        <button onclick="initBoard()">Init Board</button>
+        <div class="main">
+            <div class="topBar">
+                <button onclick="backtracking()">Visualize backtracking</button>
+                <button onclick="clearBoard()">Clear Board</button>
+                <button onclick="initBoard()">Default Board</button>
+            </div>
+        </div>
         <br><br><br>
         <div id="board"></div>
         <div id="moves-left"></div>
     </body>
     <script>loadBoard()</script>
-    <script>initBoard()</script>
+    <script>initBoard ()</script>
 </html>

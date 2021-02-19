@@ -1,16 +1,16 @@
 animations = []
 solved = false
 
-function solveSudoku(){
+function backtracking(){
     removeComputerNumbers()
     solved = false
     getBoard()
     animations = []
     formatNums()
-    solveSudokuHelper(0,0)
+    backtrackingHelper(0,0)
 }
 
-function solveSudokuHelper(x,y){
+function backtrackingHelper(x,y){
     if (solved){
         return
     }
@@ -23,7 +23,7 @@ function solveSudokuHelper(x,y){
 
     // this happens when the grid is at the final row, and needs to go down a row
     else if (x>8){
-        solveSudokuHelper(0,y+1)
+        backtrackingHelper(0,y+1)
     }
 
     else if (grid[y][x] == 0){
@@ -31,7 +31,7 @@ function solveSudokuHelper(x,y){
             if (isValid(x, y, i)){
                 grid[y][x] = i
                 animations.push([x, y, i])
-                solveSudokuHelper(x+1, y)
+                backtrackingHelper(x+1, y)
                 if (solved){
                     return
                 }
@@ -41,7 +41,7 @@ function solveSudokuHelper(x,y){
         }
     }
     else{
-        solveSudokuHelper(x+1, y)
+        backtrackingHelper(x+1, y)
     }
 }
 
